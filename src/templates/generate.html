@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block heading %}
+Generate CSV
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+    <form class="p-3 border rounded bg-light" method="post">
+        <div class="form-group">
+            <label class="form-label" for="number_of_records">Number of records</label>
+            <input type="number" min="0" max="1000000" required class="form-control" id="number_of_records" name="number_of_records">
+          </div>
+          <input type="submit" value="Generate CSV" class="btn btn-primary mt-3">
+    </form>
+</div>
+{% endblock %}

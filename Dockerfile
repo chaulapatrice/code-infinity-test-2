@@ -1,5 +1,4 @@
 FROM composer:latest
-WORKDIR /code/public
+WORKDIR /code
 COPY ./src /code
 RUN composer require
-EXPOSE 8888
