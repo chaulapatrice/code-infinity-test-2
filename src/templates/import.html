@@ -5,12 +5,21 @@ Import CSV
 {% endblock %}
 {% block content %}
 <div class="container pt-3">
-    <form class="p-3 border rounded bg-light" method="post">
+    {% if code == 1 %}
+    <div class="alert alert-success" role="alert">
+        <i class="bi bi-check-circle-fill"></i> <span class="fw-bold"> Operation complete! </span> {{message}}
+    </div>
+    {% elseif code == -1 %}
+    <div class="alert alert-danger" role="alert">
+        <i class="bi bi-x-circle-fill"></i> <span class="fw-bold"> Operation failed! </span> {{message}}
+    </div>
+    {% endif %}
+    <form class="p-3 border rounded bg-light" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <p><label  class="form-label" for="csv_file">Upload CSV file</label></p>
+            <p><label class="form-label" for="csv_file">Upload CSV file</label></p>
             <input type="file" accept=".csv" required class="form-control-file" id="csv_file" name="csv_file">
-          </div>
-          <input type="submit" value="Upload CSV" class="btn btn-primary mt-3">
+        </div>
+        <input type="submit" value="Upload CSV" class="btn btn-primary mt-3">
     </form>
 </div>
 {% endblock %}

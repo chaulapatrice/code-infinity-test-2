@@ -6,6 +6,8 @@ services:
     command: php -S 0.0.0.0:8888
     volumes: 
       - ./src:/code
+      - ./output:/output
+      - ./uploads:/uploads
     ports:
       - "8888:8888"
       

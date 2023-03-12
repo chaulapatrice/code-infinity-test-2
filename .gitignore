@@ -1,2 +1,5 @@
 vendor
 test2.db
+output
+uploads/*
+.DS_Store

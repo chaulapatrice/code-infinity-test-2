@@ -6,6 +6,17 @@ Generate CSV
 
 {% block content %}
 <div class="container pt-3">
+
+    {% if code == 1 %}
+    <div class="alert alert-success" role="alert">
+      <i class="bi bi-check-circle-fill"></i> <span class="fw-bold"> Operation complete! </span> {{message}}
+    </div>
+    {% elseif code == -1 %}
+    <div class="alert alert-danger" role="alert">
+      <i class="bi bi-x-circle-fill"></i> <span class="fw-bold"> Operation failed! </span> {{message}}
+    </div>
+    {% endif %}
+
     <form class="p-3 border rounded bg-light" method="post">
         <div class="form-group">
             <label class="form-label" for="number_of_records">Number of records</label>
