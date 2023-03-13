@@ -60,6 +60,10 @@ $app->map(['GET', 'POST'], '/import', function (Request $request, Response $resp
 
                     $batch_size = 5000;
 
+                    $sql = "DELETE FROM csv_import;";
+
+                    $pdo->exec($sql);
+
                     $sql = "INSERT INTO csv_import (id, first_name, last_name, initials, age, date_of_birth) VALUES";
                     $sql .= str_repeat("(?,?,?,?,?,?),", $batch_size - 1);
                     $sql .= "(?,?,?,?,?,?)";
@@ -70,10 +74,10 @@ $app->map(['GET', 'POST'], '/import', function (Request $request, Response $resp
                     $i = 0;
                     $values = array();
 
-                    while($row = fgetcsv($file)){
+                    while ($row = fgetcsv($file)) {
                         array_push($values, (int)$row[0], $row[1], $row[2], $row[3], (int)$row[4], $row[5]);
                         $i++;
-                        if($i === $batch_size){
+                        if ($i === $batch_size) {
                             // batch complete insert into database 
                             $stmt->execute($values);
                             $values = array();
@@ -81,18 +85,16 @@ $app->map(['GET', 'POST'], '/import', function (Request $request, Response $resp
                         }
                     }
 
-                    
+
 
                     $context['code'] = 1;
                     $context['message'] = 'Importing records successful.';
-
                 } else {
                     $context['code'] = -1;
                     $context['message'] = 'Apologies, we are experiencing a technical problem.';
                 }
 
                 fclose($file);
-
             } catch (InvalidArgumentException $e) {
                 $context['code'] = -1;
                 $context['message'] = 'Apologies, we are experiencing a technical problem.';
