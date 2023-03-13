@@ -37,5 +37,11 @@ Create database
 php init_database.php
 ```
 
+If you would like to clear the database, you can always run this command
+
+```
+php clear_db.php
+```
+
 ### 4. View in the browser
 The application is accessible at http://localhost:8888
