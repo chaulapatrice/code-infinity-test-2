@@ -84,7 +84,7 @@ $app->map(['GET', 'POST'], '/import', function (Request $request, Response $resp
                     
 
                     $context['code'] = 1;
-                    $context['message'] = 'File upload successful.';
+                    $context['message'] = 'Importing records successful.';
 
                 } else {
                     $context['code'] = -1;
